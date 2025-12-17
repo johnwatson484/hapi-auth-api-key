@@ -1,7 +1,7 @@
 import * as crypto from 'node:crypto'
 import { Server, type Request, type ResponseToolkit } from '@hapi/hapi'
-import * as Hoek from '@hapi/hoek'
-import * as Boom from '@hapi/boom'
+import { applyToDefaults } from '@hapi/hoek'
+import { unauthorized } from '@hapi/boom'
 import Joi from 'joi'
 
 interface ApiKeyPluginOptions {
@@ -35,7 +35,7 @@ const plugin = {
       throw new Error(`Invalid plugin options: ${error.message}`)
     }
 
-    const mergedOptions = Hoek.applyToDefaults(defaultOptions, value)
+    const mergedOptions = applyToDefaults(defaultOptions, value)
 
     const hasHeader = mergedOptions.headerName && mergedOptions.headerName.length > 0
     const hasQuery = mergedOptions.queryParamName && mergedOptions.queryParamName.length > 0
@@ -57,7 +57,7 @@ async function authenticate (request: Request, h: ResponseToolkit) {
   )
 
   if (matchingApiKeys.length === 0) {
-    throw Boom.unauthorized('Invalid API key')
+    throw unauthorized('Invalid API key')
   }
 
   return h.authenticated({ credentials: { apiKey: matchingApiKeys[0] } })
