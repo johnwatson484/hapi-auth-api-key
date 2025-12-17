@@ -1,6 +1,9 @@
 # Configuration files
 tsconfig.json
+tsconfig.cjs.json
+vitest.config.js
 eslint.config.js
+sonar-project.properties
 
 # Git files
 .git
@@ -11,6 +14,9 @@ eslint.config.js
 .github/
 .travis.yml
 .circleci/
+
+# SonarQube
+.scannerwork/
 
 # Editor directories
 .vscode/
