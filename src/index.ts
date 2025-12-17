@@ -2,7 +2,7 @@ import * as crypto from 'node:crypto'
 import { Server, type Request, type ResponseToolkit } from '@hapi/hapi'
 import * as Hoek from '@hapi/hoek'
 import * as Boom from '@hapi/boom'
-import * as Joi from 'joi'
+import Joi from 'joi'
 
 interface ApiKeyPluginOptions {
   apiKey?: string | string[] | ((request: any) => string | string[] | Promise<string | string[]>),
