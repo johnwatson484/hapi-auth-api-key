@@ -12,7 +12,7 @@
   },
   "scripts": {
     "lint": "eslint",
-    "build": "tsc && tsc -p tsconfig.cjs.json",
+    "build": "tsc && tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
     "test": "vitest run",
     "test:watch": "vitest"
   },
