@@ -1,7 +1,6 @@
 import { Server, type Request, type ResponseToolkit } from '@hapi/hapi'
-import pkg from '../package.json' with { type: 'json' }
 import * as Hoek from '@hapi/hoek'
-import Boom from '@hapi/boom'
+import * as Boom from '@hapi/boom'
 
 interface ApiKeyPluginOptions {
   apiKey?: string | string[] | ((request: any) => string | string[]) | Promise<string | string[]>,
@@ -18,7 +17,6 @@ let setOptions: ApiKeyPluginOptions
 
 const plugin = {
   name: 'hapi-api-key-auth',
-  pkg,
   register: async function (server: Server, options: ApiKeyPluginOptions = {}) {
     setOptions = Object.freeze(Hoek.applyToDefaults(defaultOptions, options))
     server.auth.scheme('api-key', scheme)
