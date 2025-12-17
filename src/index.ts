@@ -98,6 +98,6 @@ async function authenticate (request: Request, h: ResponseToolkit) {
   return h.authenticated({ credentials: { apiKey: matchingApiKeys[0] } })
 }
 
-export { plugin }
+export default plugin
 
 export type { ApiKeyPluginOptions }
