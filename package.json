@@ -1,6 +1,6 @@
 {
   "name": "hapi-auth-api-key",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "API Key authentication strategy for Hapi.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
