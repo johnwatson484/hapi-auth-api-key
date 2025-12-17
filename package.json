@@ -1,6 +1,6 @@
 {
   "name": "hapi-auth-api-key",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "API Key authentication strategy for Hapi.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,12 @@
     "type": "git",
     "url": "git+https://github.com/johnwatson484/hapi-auth-api-key.git"
   },
-  "keywords": [],
+  "keywords": [
+    "hapi",
+    "hapi.js",
+    "authentication",
+    "api key"
+  ],
   "author": "John Watson",
   "license": "MIT",
   "type": "module",
