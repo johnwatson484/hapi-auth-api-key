@@ -1,9 +1,8 @@
-![Build](https://github.com/johnwatson484/hapi-auth-api-key/actions/workflows/publish.yaml/badge.svg)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_hapi-auth-api-key&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DEFRA_hapi-auth-api-key)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_hapi-auth-api-key&metric=bugs)](https://sonarcloud.io/summary/new_code?id=DEFRA_hapi-auth-api-key)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_hapi-auth-api-key&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=DEFRA_hapi-auth-api-key)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_hapi-auth-api-key&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=DEFRA_hapi-auth-api-key)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_hapi-auth-api-key&metric=coverage)](https://sonarcloud.io/summary/new_code?id=DEFRA_hapi-auth-api-key)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=johnwatson484_hapi-auth-api-key&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=johnwatson484_hapi-auth-api-key)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=johnwatson484_hapi-auth-api-key&metric=bugs)](https://sonarcloud.io/summary/new_code?id=johnwatson484_hapi-auth-api-key)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=johnwatson484_hapi-auth-api-key&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=johnwatson484_hapi-auth-api-key)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=johnwatson484_hapi-auth-api-key&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=johnwatson484_hapi-auth-api-key)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=johnwatson484_hapi-auth-api-key&metric=coverage)](https://sonarcloud.io/summary/new_code?id=johnwatson484_hapi-auth-api-key)
 [![Known Vulnerabilities](https://snyk.io/test/github/johnwatson484/hapi-auth-api-key/badge.svg)](https://snyk.io/test/github/johnwatson484/hapi-auth-api-key)
 
 # hapi-auth-api-key
