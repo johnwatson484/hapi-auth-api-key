@@ -1,0 +1,35 @@
+{
+  "name": "hapi-auth-api-key",
+  "version": "0.1.0",
+  "description": "API Key authentication strategy for Hapi.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "lint": "eslint",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnwatson484/hapi-auth-api-key.git"
+  },
+  "keywords": [],
+  "author": "John Watson",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/johnwatson484/hapi-auth-api-key/issues"
+  },
+  "homepage": "https://github.com/johnwatson484/hapi-auth-api-key#readme",
+  "devDependencies": {
+    "@hapi/hapi": "21.4.4",
+    "@types/node": "25.0.3",
+    "eslint": "9.39.2",
+    "neostandard": "0.12.2",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@hapi/boom": "10.0.1",
+    "@hapi/hoek": "11.0.7"
+  }
+}
