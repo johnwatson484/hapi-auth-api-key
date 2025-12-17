@@ -1,6 +1,6 @@
 import { Server, type Request, type ResponseToolkit } from '@hapi/hapi'
 import pkg from '../package.json' with { type: 'json' }
-import Hoek from '@hapi/hoek'
+import * as Hoek from '@hapi/hoek'
 import Boom from '@hapi/boom'
 
 interface ApiKeyPluginOptions {
