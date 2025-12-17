@@ -13,22 +13,22 @@ const defaultOptions: ApiKeyPluginOptions = {
   queryParamName: 'api-key'
 }
 
-let setOptions: ApiKeyPluginOptions
+let providedOptions: ApiKeyPluginOptions
 
 const plugin = {
   name: 'hapi-api-key-auth',
   register: async function (server: Server, options: ApiKeyPluginOptions = {}) {
-    setOptions = Object.freeze(Hoek.applyToDefaults(defaultOptions, options))
+    providedOptions = Object.freeze(Hoek.applyToDefaults(defaultOptions, options))
     server.auth.scheme('api-key', scheme)
   }
 }
 
-function scheme (_server: Server, options: any) {
-  if (!setOptions.apiKey) {
+function scheme () {
+  if (!providedOptions.apiKey) {
     throw new Error('"apiKey" must be specified')
   }
 
-  if (!setOptions.headerName && !setOptions.queryParamName) {
+  if (!providedOptions.headerName && !providedOptions.queryParamName) {
     throw new Error('At least one of "headerName" or "queryParamName" must be specified')
   }
 
@@ -36,64 +36,61 @@ function scheme (_server: Server, options: any) {
 }
 
 async function authenticate (request: Request, h: ResponseToolkit) {
-  let supportedApiKeys: string[]
+  const supportedApiKeys = await getSupportedApiKeys(request)
+  const providedApiKeys = getProvidedApiKeys(request)
+  const matchingApiKeys = providedApiKeys.filter(key => supportedApiKeys.includes(key))
 
-  if (typeof setOptions.apiKey === 'function') {
-    const requestedApiKeys = setOptions.apiKey(request)
-
-    if (Array.isArray(requestedApiKeys)) {
-      supportedApiKeys = requestedApiKeys
-    } else if (typeof requestedApiKeys === 'string') {
-      supportedApiKeys = [requestedApiKeys]
-    } else {
-      throw new Error('"apiKey" function must return a string or an array of strings')
-    }
+  if (matchingApiKeys.length === 0) {
+    throw Boom.unauthorized('Invalid API key')
   }
 
-  if (setOptions.apiKey instanceof Promise) {
-    const requestedApiKeys = await setOptions.apiKey
+  return h.authenticated({ credentials: { apiKey: matchingApiKeys[0] } })
+}
 
-    if (Array.isArray(requestedApiKeys)) {
-      supportedApiKeys = requestedApiKeys
-    } else if (typeof requestedApiKeys === 'string') {
-      supportedApiKeys = [requestedApiKeys]
-    } else {
-      throw new Error('"apiKey" promise must resolve to a string or an array of strings')
-    }
+async function getSupportedApiKeys (request: Request): Promise<string[]> {
+  const { apiKey } = providedOptions
+
+  if (typeof apiKey === 'function') {
+    const result = apiKey(request)
+    return normalizeToStringArray(result, '"apiKey" function must return a string or an array of strings')
   }
 
-  if (Array.isArray(setOptions.apiKey)) {
-    supportedApiKeys = setOptions.apiKey
-  } else if (typeof setOptions.apiKey === 'string') {
-    supportedApiKeys = [setOptions.apiKey]
+  if (apiKey instanceof Promise) {
+    const result = await apiKey
+    return normalizeToStringArray(result, '"apiKey" promise must resolve to a string or an array of strings')
   }
 
+  return normalizeToStringArray(apiKey!, '"apiKey" must be a string or an array of strings')
+}
+
+function normalizeToStringArray (value: string | string[], errorMessage: string): string[] {
+  if (Array.isArray(value)) {
+    return value
+  }
+  if (typeof value === 'string') {
+    return [value]
+  }
+  throw new Error(errorMessage)
+}
+
+function getProvidedApiKeys (request: Request): string[] {
   const providedApiKeys: string[] = []
 
-  if (setOptions.headerName) {
-    const headerApiKey = request.headers[setOptions.headerName]
-
+  if (providedOptions.headerName) {
+    const headerApiKey = request.headers[providedOptions.headerName]
     if (headerApiKey) {
       providedApiKeys.push(headerApiKey.toString())
     }
   }
 
-  if (setOptions.queryParamName) {
-    const queryApiKey = request.query[setOptions.queryParamName]
-
+  if (providedOptions.queryParamName) {
+    const queryApiKey = request.query[providedOptions.queryParamName]
     if (queryApiKey) {
       providedApiKeys.push(queryApiKey.toString())
     }
   }
 
-  const matchingApiKeys = providedApiKeys.filter(key => supportedApiKeys.includes(key))
-  const isValid = matchingApiKeys.length > 0
-
-  if (!isValid) {
-    throw Boom.unauthorized('Invalid API key')
-  }
-
-  return h.authenticated({ credentials: { apiKey: matchingApiKeys[0] } })
+  return providedApiKeys
 }
 
 export default plugin

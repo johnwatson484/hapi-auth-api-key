@@ -1,3 +1,11 @@
+![Build](https://github.com/johnwatson484/hapi-auth-api-key/actions/workflows/publish.yaml/badge.svg)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_fcp-defra-id-example&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DEFRA_fcp-defra-id-example)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_fcp-defra-id-example&metric=bugs)](https://sonarcloud.io/summary/new_code?id=DEFRA_fcp-defra-id-example)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_fcp-defra-id-example&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=DEFRA_fcp-defra-id-example)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_fcp-defra-id-example&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=DEFRA_fcp-defra-id-example)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=DEFRA_fcp-defra-id-example&metric=coverage)](https://sonarcloud.io/summary/new_code?id=DEFRA_fcp-defra-id-example)
+[![Known Vulnerabilities](https://snyk.io/test/github/johnwatson484/hapi-auth-api-key/badge.svg)](https://snyk.io/test/github/johnwatson484/hapi-auth-api-key)
+
 # hapi-auth-api-key
 API Key authentication strategy for Hapi.js
 
@@ -53,10 +61,16 @@ process.on('unhandledRejection', (err) => {
 init()
 ```
 
-The plugin expects clients to send the API key in the `x-api-key` header with each request:
+By default, the plugin expects clients to send the API key in either the `x-api-key` header or the `api-key` query parameter with each request:
 
 ```bash
 curl -H "x-api-key: your-secret-api-key" http://localhost:3000/
+```
+
+or
+
+```bash
+curl http://localhost:3000/?api-key=your-secret-api-key
 ```
 
 ## Options
