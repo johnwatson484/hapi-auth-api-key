@@ -1,6 +1,6 @@
 {
   "name": "hapi-auth-api-key",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "API Key authentication strategy for Hapi.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "eslint",
     "build": "tsc && tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json && sed -i 's/exports.default = plugin;/module.exports = plugin;/' dist/cjs/index.js",
-    "test": "vitest run --coverage",
+    "test": "npm run build && vitest run --coverage",
     "test:watch": "vitest"
   },
   "repository": {
