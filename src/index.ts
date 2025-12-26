@@ -1,5 +1,5 @@
 import * as crypto from 'node:crypto'
-import { Server, type Request, type ResponseToolkit } from '@hapi/hapi'
+import { Server, type Plugin, type Request, type ResponseToolkit } from '@hapi/hapi'
 import { applyToDefaults } from '@hapi/hoek'
 import { unauthorized } from '@hapi/boom'
 import Joi from 'joi'
@@ -26,7 +26,7 @@ const optionsSchema = Joi.object({
 
 let providedOptions: ApiKeyPluginOptions
 
-const plugin = {
+const plugin: Plugin<ApiKeyPluginOptions> = {
   name: 'hapi-api-key-auth',
   register: async function (server: Server, options: ApiKeyPluginOptions = {}) {
     const { error, value } = optionsSchema.validate(options)
