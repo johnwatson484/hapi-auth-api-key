@@ -1,6 +1,6 @@
 {
   "name": "hapi-auth-api-key",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "API Key authentication strategy for Hapi.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -47,8 +47,8 @@
     "vitest": "4.0.16"
   },
   "dependencies": {
-    "@hapi/boom": "10.0.1",
-    "@hapi/hoek": "11.0.7",
-    "joi": "18.0.2"
+    "@hapi/boom": "^10.0.1",
+    "@hapi/hoek": "^11.0.7",
+    "joi": "^18.0.2"
   }
 }
